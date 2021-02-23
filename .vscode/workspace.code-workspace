@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "SwarmRobots",
+				"type": "python",
+				"request": "launch",
+				"program": "${workspaceFolder}\\server\\main.py",
+				"args": [
+				]
+			}
+		]
+	}
+}
