@@ -20,7 +20,7 @@ SERVOR = 24
 #propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
 while True:
     time.sleep(3)
-    coms.send(robot, "hi")
+    coms.send(robot)
 
 
 #loop in one thread that constanyl sets and sends Location
