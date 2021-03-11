@@ -24,7 +24,7 @@ class Com(LineReceiver):
         self.robots = robots
         self.state = "GETID"
         self.ID = 1
-        print("on",flush=True)
+        print("on", flush=True)
         
 
     def connectionMade(self):
