@@ -5,28 +5,29 @@ import coms as coms
 import camera as cam
 from propulsion import *
 
+BASE_IP = "192.168.1.190"
 
-pi = pigpio.pi()
-propulsion = Propulsion(pi, 21, 22, 23, 24)
-robot = coms.start()
-cam.start()
+robot = coms.start(BASE_IP)
+cam.start(BASE_IP)
 gpsd.connect()
 
 
 
 
-#pi = pigpio.pi()
+pi = pigpio.pi()
 ESCL = 21
 ESCR = 22
 SERVOL = 23
 SERVOR = 24
 
-#propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
+propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
+
+
 while True:
-    time.sleep(3)
-    coms.send(robot)
     packet = gpsd.get_current()
     print(packet.position())
+    print(robot.robot["0"].robotObj.mode)
+    coms.send(robot, packet.position())
 
 
 #loop in one thread that constanyl sets and sends Location

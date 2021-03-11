@@ -62,15 +62,15 @@ class ComFactory(Factory):
     def clientConnectionFailed(self, connector, reason):
         print('Connection failed. Reason:', reason, flush=True)
 
-def start():
+def start(IP):
     factory = ComFactory()
     #twisted_reactor.connectTCP("10.0.0.1", 8123, factory)
-    twisted_reactor.connectTCP("127.0.0.1", 8555, factory)
+    twisted_reactor.connectTCP(IP, 8555, factory)
     
     reactor()
     return factory
     
-def send(factory):
+def send(factory, data):
     if "0" in factory.robot.keys():
-        factory.robot["0"].sendLine(bytes("hi back", 'utf-8')) 
+        factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
     

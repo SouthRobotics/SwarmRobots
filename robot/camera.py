@@ -15,7 +15,7 @@ class FrameSegment(object):
     """
     MAX_DGRAM = 2**16
     MAX_IMAGE_DGRAM = MAX_DGRAM - 64 # extract 64 bytes in case UDP frame overflown
-    def __init__(self, sock, port, addr="192.168.1.190"):
+    def __init__(self, sock, port, addr):
         self.s = sock
         self.port = port
         self.addr = addr
@@ -40,7 +40,7 @@ class FrameSegment(object):
             count -= 1
 
 
-def _start():
+def _start(IP):
     """ Top level main function """
     # Set up UDP socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -53,7 +53,7 @@ def _start():
     #camera.capture_continuous(rawCapture, format="bgr", use_video_port=True)
     camera.capture(rawCapture, format="bgr", use_video_port=True)
 
-    fs = FrameSegment(s, port)
+    fs = FrameSegment(s, port, IP)
 
     
     while (True):
@@ -64,6 +64,6 @@ def _start():
     cv2.destroyAllWindows()
     s.close()
 
-def start():
-    t = threading.Thread(target = _start)
+def start(IP):
+    t = threading.Thread(target = _start, args=[IP])
     t.start()
