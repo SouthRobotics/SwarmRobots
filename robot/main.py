@@ -26,7 +26,8 @@ propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
 while True:
     packet = gpsd.get_current()
     print(packet.position())
-    print(robot.robot["0"].robotObj.mode)
+    if "0" in robot.robot.keys():
+        print(robot.robot["0"].robotObj.mode)
     coms.send(robot, packet.position())
 
 
