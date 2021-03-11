@@ -1,6 +1,7 @@
-import server.byteConverter as _byteConverter
-from server.connectionManager import connectionManager
-
+import coms as coms
+import time
+import camera as cam
+import cv2
 
 
 
@@ -8,4 +9,17 @@ from server.connectionManager import connectionManager
 
 #Subsystem Intilaization
 
-_connectionManager = connectionManager()
+factory = coms.start()
+cam.start()
+cam.work_addr = "10.0.0.21"
+
+
+while True:
+    time.sleep(3)
+    coms.send(factory, 1)
+    try:
+        cv2.imshow('frame', cam.img)
+    except:
+        pass
+    
+                
