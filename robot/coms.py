@@ -74,3 +74,7 @@ def send(factory, data):
     if "0" in factory.robot.keys():
         factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
     
+def RobotObj(factory):
+    if "0" in factory.robot.keys():
+        return factory.robot["0"].robotObj
+    return None
