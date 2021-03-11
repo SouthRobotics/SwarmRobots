@@ -1,6 +1,6 @@
 from location import Location
 import time
-#import pigpio
+import pigpio
 import coms as coms
 import camera as cam
 from propulsion import *
