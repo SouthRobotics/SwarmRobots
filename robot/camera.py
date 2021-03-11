@@ -55,10 +55,11 @@ def _start():
 
     fs = FrameSegment(s, port)
 
-    cap = rawCapture.array
-    while True:
-        _, frame = cap.read()
-        fs.udp_frame(frame)
+    
+    while (True):
+        cap = rawCapture.array
+        fs.udp_frame(cap)
+
     cap.release()
     cv2.destroyAllWindows()
     s.close()
