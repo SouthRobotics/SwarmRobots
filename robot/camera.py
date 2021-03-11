@@ -47,7 +47,7 @@ def _start(IP):
     port = 9656
 
     camera = PiCamera()
-    camera.resolution = (1920, 1080)
+    camera.resolution = (1280, 720)
     camera.framerate = 30
     rawCapture = PiRGBArray(camera, size=(1280, 720))
     #camera.capture_continuous(rawCapture, format="bgr", use_video_port=True)
