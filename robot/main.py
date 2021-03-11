@@ -1,4 +1,4 @@
-from location import Location
+from gps import GPS
 import time
 import pigpio
 import coms as coms
@@ -6,7 +6,8 @@ import camera as cam
 from propulsion import *
 
 
-
+pi = pigpio.pi()
+propulsion = Propulsion(pi, 21, 22, 23, 24)
 robot = coms.start()
 cam.start()
 

@@ -1,4 +1,4 @@
 
 
-class Location():
+class GPS():
     pass

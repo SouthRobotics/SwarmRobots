@@ -20,6 +20,7 @@ class Propulsion:
 
         self.pi.set_servo_pulsewidth(self.ServoL, self.ServoCenter)
         self.pi.set_servo_pulsewidth(self.ServoR, self.ServoCenter)
+        # need to implement ESC calibration procedure here
         self.pi.set_servo_pulsewidth(self.ESCL, self.ESCMin)
         self.pi.set_servo_pulsewidth(self.ESCR, self.ESCMin)
 
