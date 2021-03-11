@@ -27,13 +27,14 @@ def _start():
 
     while True:
         seg, addr = s.recvfrom(MAX_DGRAM)
+        print(str(addr))
         if str(addr) == work_addr:
             if struct.unpack("B", seg[0:1])[0] > 1:
                 dat += seg[1:]
             else:
                 dat += seg[1:]
                 img = cv2.imdecode(np.fromstring(dat, dtype=np.uint8), 1)
-                #cv2.imshow('frame', img)
+                cv2.imshow('frame', img)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
                 dat = b''
