@@ -2,3 +2,4 @@ twisted
 picamera
 opencv-python
 pigpio
+gps

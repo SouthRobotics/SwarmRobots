@@ -10,6 +10,9 @@ pi = pigpio.pi()
 propulsion = Propulsion(pi, 21, 22, 23, 24)
 robot = coms.start()
 cam.start()
+gpsp = GPS()
+gpsp.start()
+
 
 #pi = pigpio.pi()
 ESCL = 21
@@ -21,6 +24,7 @@ SERVOR = 24
 while True:
     time.sleep(3)
     coms.send(robot)
+    print(gpsp.get_current_value())
 
 
 #loop in one thread that constanyl sets and sends Location

@@ -10,8 +10,9 @@ import cv2
 #Subsystem Intilaization
 
 factory = coms.start()
-cam.start()
 cam.work_addr = "192.168.1.137"
+cam.start()
+
 
 
 while True:
