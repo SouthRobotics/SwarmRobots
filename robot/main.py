@@ -10,7 +10,7 @@ BASE_IP = "192.168.1.190"
 robot = coms.start(BASE_IP)
 cam.start(BASE_IP)
 gpsd.connect()
-
+time.sleep(3)
 
 
 
