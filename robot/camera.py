@@ -56,7 +56,7 @@ def _start():
     fs = FrameSegment(s, port)
 
     cap = rawCapture.array
-    while (cap.isOpened()):
+    while True:
         _, frame = cap.read()
         fs.udp_frame(frame)
     cap.release()
