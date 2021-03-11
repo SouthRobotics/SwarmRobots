@@ -65,7 +65,7 @@ class ComFactory(Factory):
 def start(IP):
     factory = ComFactory()
     #twisted_reactor.connectTCP("10.0.0.1", 8123, factory)
-    twisted_reactor.connectTCP(IP, 8555, factory)
+    twisted_reactor.connectTCP(IP, 9655, factory)
     
     reactor()
     return factory

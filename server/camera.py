@@ -33,14 +33,14 @@ def _start():
             dump_buffer(s)
             curr_work_addr = work_addr
         seg, addr = s.recvfrom(MAX_DGRAM)
-        print(str(addr[0]))
+        #print(str(addr[0]))
         if str(addr[0]) == curr_work_addr:
             if struct.unpack("B", seg[0:1])[0] > 1:
                 dat += seg[1:]
             else:
                 dat += seg[1:]
                 img = cv2.imdecode(np.fromstring(dat, dtype=np.uint8), 1)
-                if img != None:
+                if img is not None:
                     cv2.imshow('frame', img)
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break

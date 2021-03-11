@@ -47,10 +47,11 @@ class Com(LineReceiver):
         self.state = "NORMAL"
 
     def handle_NORMAL(self, message):
-        message = "<{}> {}".format(self.ID, message)
-        for name, protocol in self.robots.iteritems():
-            if protocol != self:
-                protocol.sendLine(message)
+        print(message)
+        #message = "<{}> {}".format(self.ID, message)
+        #for name, protocol in self.robots.iteritems():
+        #    if protocol != self:
+        #        protocol.sendLine(message)
 
 
 class ComFactory(Factory):
