@@ -1,4 +1,4 @@
-from gps import GPS
+import gpsd
 import time
 import pigpio
 import coms as coms
@@ -10,8 +10,9 @@ pi = pigpio.pi()
 propulsion = Propulsion(pi, 21, 22, 23, 24)
 robot = coms.start()
 cam.start()
-gpsp = GPS()
-gpsp.start()
+gpsd.connect()
+
+
 
 
 #pi = pigpio.pi()
@@ -24,7 +25,8 @@ SERVOR = 24
 while True:
     time.sleep(3)
     coms.send(robot)
-    print(gpsp.get_current_value())
+    packet = gpsd.get_current()
+    print(packet.position())
 
 
 #loop in one thread that constanyl sets and sends Location
