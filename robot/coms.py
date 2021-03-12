@@ -63,9 +63,9 @@ class ComFactory(Factory):
     def clientConnectionFailed(self, connector, reason):
         print('Connection failed. Reason:', reason, flush=True)
 
-def start():
+def start(IP):
     factory = ComFactory()
-    reactor.connectTCP("192.168.1.190", 9655, factory)
+    reactor.connectTCP(IP, 9655, factory)
     t = threading.Thread(target=reactor.run, args=(False,))
     #twisted_reactor.run()
     #print("on2")
