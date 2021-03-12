@@ -1,9 +1,9 @@
 from twisted.internet.protocol import Factory
 from twisted.protocols.basic import LineReceiver
-from twisted.internet import reactor as twisted_reactor
+from twisted.internet import reactor as reactor
 import threading
 
-def reactor():
+''''def reactor():
     t = threading.Thread(
         target=twisted_reactor.run,
         kwargs={"installSignalHandlers": False},
@@ -15,6 +15,7 @@ def reactor():
 
     twisted_reactor.callFromThread(twisted_reactor.stop)
     t.join()
+    '''''
 
 
 class Robot:
@@ -62,13 +63,13 @@ class ComFactory(Factory):
     def clientConnectionFailed(self, connector, reason):
         print('Connection failed. Reason:', reason, flush=True)
 
-def start(IP):
+def start():
     factory = ComFactory()
-    #twisted_reactor.connectTCP("10.0.0.1", 8123, factory)
-    twisted_reactor.connectTCP("192.168.1.190", 9655, factory)
-    
-    reactor()
-    return factory
+    reactor.connectTCP("192.168.1.190", 9655, factory)
+    t = threading.Thread(target=reactor.run, args=(False,))
+    #twisted_reactor.run()
+    #print("on2")
+    t.start()
     
 def send(factory, data):
     if "0" in factory.robot.keys():
