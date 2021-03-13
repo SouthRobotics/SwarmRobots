@@ -57,12 +57,12 @@ def start(IP):
     #twisted_reactor.run()
     #print("on2")
     t.start()
-    
+
     return factory
     
 def send(factory, data):
     if "0" in factory.robot.keys():
-        factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
+        factory.robot["0"].sendLine(bytes(str(data), 'utf-8')) 
     
 def RobotObj(factory):
     try:
