@@ -17,7 +17,7 @@ cam.start()
 
 while True:
     time.sleep(3)
-    coms.send(factory, 1)
+    #coms.send(factory, 1)
 
     
                 

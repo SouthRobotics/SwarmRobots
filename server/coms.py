@@ -24,7 +24,7 @@ class Com(LineReceiver):
         self.robots = robots
         self.state = "GETID"
         self.ID = 1
-        print("on", flush=True)
+        #print("on", flush=True)
         
 
     def connectionMade(self):
@@ -35,6 +35,7 @@ class Com(LineReceiver):
             del self.robots[self.robot]
 
     def lineReceived(self, line):
+        print(line.decode("utf-8"))
         if self.state == "GETID":
             self.handle_GETID(line)
         else:
@@ -47,7 +48,7 @@ class Com(LineReceiver):
         self.state = "NORMAL"
 
     def handle_NORMAL(self, message):
-        print(message)
+        print(message.decode("utf-8"))
         #message = "<{}> {}".format(self.ID, message)
         #for name, protocol in self.robots.iteritems():
         #    if protocol != self:
@@ -57,10 +58,10 @@ class Com(LineReceiver):
 class ComFactory(Factory):
     protocol = Com
     def __init__(self):
-        self.robots = {}  # maps user names to Chat instances
+        self.robots = {}
 
     def buildProtocol(self, addr):
-        print("on1",flush=True)
+        #print("on1",flush=True)
         return Com(self.robots)
 
 
@@ -75,6 +76,6 @@ def start():
     return factory
 
 def send(factory, ID):
-    print(factory.robots.keys())
+    #print(factory.robots.keys())
     if str(ID) in factory.robots.keys():
             factory.robots[str(ID)].sendLine(bytes("hi back", 'utf-8')) 

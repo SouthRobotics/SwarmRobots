@@ -59,11 +59,8 @@ def start(IP):
     t.start()
     
 def send(factory, data):
-    try:
-        if "0" in factory.robot.keys():
-            factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
-    except: 
-        return
+    if "0" in factory.robot.keys():
+        factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
     
 def RobotObj(factory):
     try:
