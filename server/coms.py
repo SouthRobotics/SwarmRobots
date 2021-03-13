@@ -43,7 +43,7 @@ class Com(LineReceiver):
     def handle_GETID(self, ID):
         self.ID = ID.decode("utf-8") 
         self.robots[ID.decode("utf-8")] = self
-        self.robot = Robot(ID)
+        self.robot = Robot(self.ID)
         self.state = "NORMAL"
 
     def handle_NORMAL(self, message):

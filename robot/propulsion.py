@@ -8,8 +8,8 @@ class Propulsion:
 
         self.ESCMin = 1000
         self.ESCMax = 2000
-        self.ServoMin = 1000
-        self.ServoMax = 2000
+        self.ServoMin = 500
+        self.ServoMax = 2500
         self.ServoCenter = int((self.ServoMax-self.ServoMin)/2 + self.ServoMin)
 
         self.pi = pi

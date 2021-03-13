@@ -3,19 +3,6 @@ from twisted.protocols.basic import LineReceiver
 from twisted.internet import reactor as reactor
 import threading
 
-''''def reactor():
-    t = threading.Thread(
-        target=twisted_reactor.run,
-        kwargs={"installSignalHandlers": False},
-        daemon=True,
-    )
-    t.start()
-
-    yield twisted_reactor
-
-    twisted_reactor.callFromThread(twisted_reactor.stop)
-    t.join()
-    '''''
 
 
 class Robot:
@@ -72,8 +59,11 @@ def start(IP):
     t.start()
     
 def send(factory, data):
-    if "0" in factory.robot.keys():
-        factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
+    try:
+        if "0" in factory.robot.keys():
+            factory.robot["0"].sendLine(bytes(data, 'utf-8')) 
+    except: 
+        return
     
 def RobotObj(factory):
     try:
