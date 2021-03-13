@@ -27,13 +27,13 @@ def sendLoop():
     global successful
     while True:
         packet = gpsd.get_current()
-
+        time.sleep(1)
         print(packet.position())
         if coms.RobotObj(robot):
             print(coms.RobotObj(robot).mode)
         coms.send(robot, packet.position())
 
-t = threading.Thread(target=sendLoop, args=(False,))
+t = threading.Thread(target=sendLoop)
 t.start()
 
 #loop in one thread that constanyl sets and sends Location
