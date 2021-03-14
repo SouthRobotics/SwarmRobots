@@ -42,7 +42,7 @@ def sendLoop():
         #    print(coms.RobotObj(robot).mode)
         
         #coms.send(factory, str(truncate(packet.lat, 5)) +"--"+ str(truncate(packet.lon, 5)) +"--"+ str(truncate(packet.speed(), 5)))hspeed
-        print(str(truncate(packet.lat, 7)) +"--"+ str(truncate(packet.lon, 7)) +"--"+ str(truncate(packet.speed(), 7))+"--"+ str(truncate(packet.hspeed, 2)), flush=True)
+        print(str(truncate(packet.lat, 7)) +"--"+ str(truncate(packet.lon, 7)) +"--"+ str(truncate(packet.speed(), 7))+"--"+ str(truncate(packet.track, 2)), flush=True)
 
 #Main Control Loop
 def controlLoop():
