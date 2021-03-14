@@ -25,12 +25,14 @@ class Com(LineReceiver):
         self.sendLine(bytes("1", 'utf-8'))
 
     def lineReceived(self, line):
-        print(" ( " +line.decode("utf-8") + " ) ")
+        print(" ( " + line.decode("utf-8") + " ) ")
         vars = line.decode("utf-8").split("--")
-
-        Robot.motorRSpeed = vars[0]
-        Robot.motorLSpeed = vars[1]
-        Robot.motorAngle = vars[2]
+        try:
+            Robot.motorRSpeed = vars[0]
+            Robot.motorLSpeed = vars[1]
+            Robot.motorAngle = vars[2]
+        except:
+            print("error")
 
 class ComFactory(Factory):
     def __init__(self):
