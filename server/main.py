@@ -36,8 +36,8 @@ while True:
     pass
     #time.sleep
     #(3)
-    pygame.event.pump()
-    coms.send(factory, current_robot, str(truncate(controller.get_axis(0),3)) + "," + str(truncate((controller.get_axis(4)+1)/2, 3)) + "," + str(truncate((controller.get_axis(5)+1)/2,3)))
+    #pygame.event.pump()
+    #coms.send(factory, current_robot, str(truncate(controller.get_axis(0),3)) + "," + str(truncate((controller.get_axis(4)+1)/2, 3)) + "," + str(truncate((controller.get_axis(5)+1)/2,3)))
     
     #coms.send(factory, 1)
 
