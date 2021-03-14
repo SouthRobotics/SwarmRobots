@@ -6,14 +6,11 @@ import threading
 
 
 class Robot:
-    mode = 0 #0 or 1, 0 = manual control, 1 auto
     motorRSpeed = 0
     motorLSpeed = 0
     motorAngle  = 90
     coordlat = 0
     coordlon = 0
-    GOcoordlat = 0
-    GOcoordlon = 0
 
 
 

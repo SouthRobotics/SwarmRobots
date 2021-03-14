@@ -49,6 +49,8 @@ class Com(LineReceiver):
 
     def handle_NORMAL(self, message):
         print(message.decode("utf-8"))
+        
+
         #message = "<{}> {}".format(self.ID, message)
         #for name, protocol in self.robots.iteritems():
         #    if protocol != self:
@@ -75,7 +77,7 @@ def start():
     
     return factory
 
-def send(factory, ID):
+def send(factory, ID, data):
     #print(factory.robots.keys())
     if str(ID) in factory.robots.keys():
-            factory.robots[str(ID)].sendLine(bytes("hi back", 'utf-8')) 
+            factory.robots[str(ID)].sendLine(bytes(str(data), 'utf-8')) 
