@@ -33,18 +33,6 @@ propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
 
 icm20948=gyro.ICM20948()
 
-def updateYaw():
-    icm20948.icm20948_Gyro_Accel_Read()
-    icm20948.icm20948MagRead()
-    icm20948.icm20948CalAvgValue()
-    time.sleep(0.1)
-    icm20948.imuAHRSupdate(gyro.MotionVal[0] * 0.0175, gyro.MotionVal[1] * 0.0175,gyro.MotionVal[2] * 0.0175,
-                gyro.MotionVal[3],gyro.MotionVal[4],gyro.MotionVal[5], 
-                gyro.MotionVal[6], gyro.MotionVal[7], gyro.MotionVal[8])
-
-    yaw = math.atan2(-2 * gyro.q1 * gyro.q2 - 2 * gyro.q0 * gyro.q3, 2 * gyro.q2 * gyro.q2 + 2 * gyro.q3 * gyro.q3 - 1) * 57.3
-    return yaw
-
 #Main coordinate sending loop
 def sendLoop():
     global successful
@@ -57,7 +45,7 @@ def sendLoop():
         #    print(coms.RobotObj(robot).mode)
         
         #coms.send(factory, str(truncate(packet.lat, 5)) +"--"+ str(truncate(packet.lon, 5)) +"--"+ str(truncate(packet.speed(), 5)))hspeed
-        print(str(truncate(packet.lat, 7)) +"--"+ str(truncate(packet.lon, 7)) +"--"+ str(truncate(packet.speed(), 7))+"--"+ str(truncate(updateYaw(), 2)), flush=True)
+        print(str(truncate(packet.lat, 7)) +"--"+ str(truncate(packet.lon, 7)) +"--"+ str(truncate(packet.speed(), 7))+"--"+ str(truncate(gyro.update(icm20948), 2)), flush=True)
 
 #Main Control Loop
 def controlLoop():
