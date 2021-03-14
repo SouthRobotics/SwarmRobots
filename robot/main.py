@@ -39,12 +39,7 @@ def sendLoop():
     while True:
         packet = gpsd.get_current()
         time.sleep(1)
-        #print(packet.position())
 
-        #if coms.RobotObj(robot):
-        #    print(coms.RobotObj(robot).mode)
-        
-        #coms.send(factory, str(truncate(packet.lat, 5)) +"--"+ str(truncate(packet.lon, 5)) +"--"+ str(truncate(packet.speed(), 5)))hspeed\
         coms.Robot.coordlat = str(truncate(packet.lat, 7))
         coms.Robot.coordlon = str(truncate(packet.lon, 7))
         coms.Robot.speed = str(truncate(packet.speed(), 7))

@@ -37,6 +37,7 @@ while True:
 
     pygame.event.pump()
     coms.send(factory, current_robot, str(truncate((controller.get_axis(4)+1)/2, 3)) + "--" + str(truncate((controller.get_axis(5)+1)/2,3))  + "--" +  str(truncate(((controller.get_axis(0)+1)*90),3)))
+    print(str(truncate((controller.get_axis(4)+1)/2, 3)) + "--" + str(truncate((controller.get_axis(5)+1)/2,3))  + "--" +  str(truncate(((controller.get_axis(0)+1)*90),3)))
     #coms.send(factory, 1)
 
     
