@@ -11,6 +11,8 @@ class Robot:
     motorAngle  = 90
     coordlat = 0
     coordlon = 0
+    speed = 0
+    heading = 0
 
 
 
@@ -18,17 +20,17 @@ class Com(LineReceiver):
     def __init__(self, robot):
         self.robot = robot
         self.robot["0"] = self
-        self.robotObj = Robot()
+        #self.robotObj = Robot()
     def connectionMade(self):
         self.sendLine(bytes("1", 'utf-8'))
 
     def lineReceived(self, line):
+        print(" ( " +line.decode("utf-8") + " ) ")
+        vars = line.decode("utf-8").split("--")
 
-        pass
-
-    def handle_GETNAME(self, name):
-        pass
-
+        Robot.motorRSpeed = vars[0]
+        Robot.motorLSpeed = vars[1]
+        Robot.motorAngle = vars[2]
 
 class ComFactory(Factory):
     def __init__(self):
@@ -61,10 +63,3 @@ def send(factory, data):
     if "0" in factory.robot.keys():
         factory.robot["0"].sendLine(bytes(str(data), 'utf-8')) 
     
-def RobotObj(factory):
-    try:
-        if "0" in factory.robot.keys():
-            return factory.robot["0"].robotObj
-        return None
-    except:
-        return None

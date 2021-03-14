@@ -44,17 +44,21 @@ def sendLoop():
         #if coms.RobotObj(robot):
         #    print(coms.RobotObj(robot).mode)
         
-        #coms.send(factory, str(truncate(packet.lat, 5)) +"--"+ str(truncate(packet.lon, 5)) +"--"+ str(truncate(packet.speed(), 5)))hspeed
-        coms.send(factory, str(truncate(packet.lat, 7)) +"--"+ str(truncate(packet.lon, 7)) +"--"+ str(truncate(packet.speed(), 7))+"--"+ str(truncate(gyro.update(icm20948), 2)))
+        #coms.send(factory, str(truncate(packet.lat, 5)) +"--"+ str(truncate(packet.lon, 5)) +"--"+ str(truncate(packet.speed(), 5)))hspeed\
+        coms.Robot.coordlat = str(truncate(packet.lat, 7))
+        coms.Robot.coordlon = str(truncate(packet.lon, 7))
+        coms.Robot.speed = str(truncate(packet.speed(), 7))
+        coms.Robot.heading = str(truncate(gyro.update(icm20948), 2))
+        coms.send(factory, coms.Robot.coordlat +"--"+ coms.Robot.coordlon +"--"+ coms.Robot.speed +"--"+ coms.Robot.heading)
 
 #Main Control Loop
 def controlLoop():
     global successful
     while True:
         if coms.RobotObj(factory) is not None:
-            print(coms.RobotObj(factory).motorRSpeed, flush=True)
-            print(coms.RobotObj(factory).motorLSpeed, flush=True)
-            print(coms.RobotObj(factory).motorAngle, flush=True)
+            print(coms.Robot.motorRSpeed, flush=True)
+            print(coms.Robot.motorLSpeed, flush=True)
+            print(coms.Robot.motorAngle, flush=True)
 
 
 

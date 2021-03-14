@@ -7,15 +7,13 @@ import threading
 class Robot:
 
     def __init__(self, _robotID):
-        self.robotmode = 0  # 0-> coord based 1-> direct motor control
+        self.motorRSpeed = 0
+        self.motorLSpeed = 0
+        self.motorAngle  = 90
         self.coordlat = 0
         self.coordlon = 0
-        self.Gocoordlat = 0
-        self.Gocoordlon = 0
-        self.motorRpos = 90  # 0-180
-        self.motorRspeed = 0  # 0-1
-        self.motorLpos = 90  # 0-180
-        self.motorLspeed = 0  # 0-1
+        self.speed = 0
+        self.heading = 0
         self.robotID = _robotID
 
 
@@ -35,7 +33,7 @@ class Com(LineReceiver):
             del self.robots[self.robot]
 
     def lineReceived(self, line):
-        print(line.decode("utf-8"))
+        #print(line.decode("utf-8"))
         if self.state == "GETID":
             self.handle_GETID(line)
         else:
@@ -48,8 +46,14 @@ class Com(LineReceiver):
         self.state = "NORMAL"
 
     def handle_NORMAL(self, message):
-        print(message.decode("utf-8"))
-        
+        print(self.ID + " ( " +message.decode("utf-8") + " ) ")
+
+        vars = message.decode("utf-8").split("--")
+
+        self.robot.coordlat = vars[0]
+        self.robot.coordlon = vars[1]
+        self.robot.speed = vars[2]
+        self.robot.heading = vars[3]
 
         #message = "<{}> {}".format(self.ID, message)
         #for name, protocol in self.robots.iteritems():
@@ -81,3 +85,11 @@ def send(factory, ID, data):
     #print(factory.robots.keys())
     if str(ID) in factory.robots.keys():
             factory.robots[str(ID)].sendLine(bytes(str(data), 'utf-8')) 
+
+def RobotObj(factory, id):
+    try:
+        if str(id) in factory.robot.keys():
+            return factory.robot[str(id)].robotObj
+        return None
+    except:
+        return None
