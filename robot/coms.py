@@ -28,10 +28,8 @@ class Com(LineReceiver):
     def lineReceived(self, line):
         print(" ( " + line.decode("utf-8") + " ) ")
         vars = line.decode("utf-8").split("--")
-        try:
-            self.props[0].setSpeedAngle(vars[1], vars[0], vars[2]) 
-        except:
-            print("error")
+        self.props[0].setSpeedAngle(vars[1], vars[0], vars[2]) 
+
 
 class ComFactory(Factory):
     def __init__(self, props):
