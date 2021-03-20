@@ -16,13 +16,6 @@ def truncate(number, digits) -> float:
 
 BASE_IP = "192.168.1.190"
 
-factory = coms.start(BASE_IP)
-cam.start(BASE_IP)
-gpsd.connect()
-time.sleep(3)
-
-
-
 pi = pigpio.pi()
 ESCL = 13
 ESCR = 19
@@ -30,8 +23,19 @@ SERVOL = 5
 SERVOR = 12
 
 propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
-
+props=[]
+props.append(propulsion)
 icm20948=gyro.ICM20948()
+
+factory = coms.start(BASE_IP, props)
+cam.start(BASE_IP)
+gpsd.connect()
+time.sleep(3)
+
+
+
+
+
 
 #Main coordinate sending loop
 def sendLoop():
@@ -51,6 +55,7 @@ def controlLoop():
     global successful
     while True:
         if coms.RobotObj(factory) is not None:
+            propulsion.setSpeedAngle(coms.Robot.motorLSpeed,coms.Robot.motorRSpeed,coms.Robot.motorAngle)
             print(coms.Robot.motorRSpeed, flush=True)
             print(coms.Robot.motorLSpeed, flush=True)
             print(coms.Robot.motorAngle, flush=True)
@@ -58,8 +63,8 @@ def controlLoop():
 
 
 
-t2 = threading.Thread(target=controlLoop)
-t2.start()
+#t2 = threading.Thread(target=controlLoop)
+#t2.start()
 t1 = threading.Thread(target=sendLoop)
 t1.start()
 

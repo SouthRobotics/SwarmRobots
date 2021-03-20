@@ -17,9 +17,10 @@ class Robot:
 
 
 class Com(LineReceiver):
-    def __init__(self, robot):
+    def __init__(self, robot, props):
         self.robot = robot
         self.robot["0"] = self
+        self.props = props
         #self.robotObj = Robot()
     def connectionMade(self):
         self.sendLine(bytes("1", 'utf-8'))
@@ -28,22 +29,20 @@ class Com(LineReceiver):
         print(" ( " + line.decode("utf-8") + " ) ")
         vars = line.decode("utf-8").split("--")
         try:
-            Robot.motorRSpeed = vars[0]
-            Robot.motorLSpeed = vars[1]
-            Robot.motorAngle = vars[2]
+            self.props[0].setSpeedAngle(vars[1], vars[0], vars[2]) 
         except:
             print("error")
 
 class ComFactory(Factory):
-    def __init__(self):
+    def __init__(self, props):
         self.robot = {}
-    
+        self.props = props
     def startedConnecting(self, connector):
         print('Started to connect.', flush=True)
 
-    def buildProtocol(self, addr):
+    def buildProtocol(self):
         print('Connected.', flush=True)
-        return Com(self.robot)
+        return Com(self.robot, self.props)
 
     def clientConnectionLost(self, connector, reason):
         print('Lost connection.  Reason:', reason, flush=True)
@@ -51,8 +50,8 @@ class ComFactory(Factory):
     def clientConnectionFailed(self, connector, reason):
         print('Connection failed. Reason:', reason, flush=True)
 
-def start(IP):
-    factory = ComFactory()
+def start(IP, props):
+    factory = ComFactory(props)
     reactor.connectTCP(IP, 9655, factory)
     t = threading.Thread(target=reactor.run, args=(False,))
     #twisted_reactor.run()

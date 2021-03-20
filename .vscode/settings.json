@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\program files\\python39\\python.exe",
+    "python.pythonPath": "C:\\Program Files\\Python39\\python.exe",
     "python.languageServer": "Pylance",
     "python.analysis.extraPaths":["robot", "server"]
 }
