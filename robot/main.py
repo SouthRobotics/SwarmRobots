@@ -25,6 +25,7 @@ SERVOR = 12
 propulsion = Propulsion(pi, ESCL, ESCR, SERVOL, SERVOR)
 props=[]
 props.append(propulsion)
+print(props)
 icm20948=gyro.ICM20948()
 
 factory = coms.start(BASE_IP, props)
