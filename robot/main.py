@@ -17,8 +17,8 @@ def truncate(number, digits) -> float:
 BASE_IP = "192.168.1.190"
 
 pi = pigpio.pi()
-ESCL = 13
-ESCR = 19
+ESCL = 19
+ESCR = 13
 SERVOL = 5
 SERVOR = 12
 
