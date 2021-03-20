@@ -40,7 +40,7 @@ class ComFactory(Factory):
     def startedConnecting(self, connector):
         print('Started to connect.', flush=True)
 
-    def buildProtocol(self):
+    def buildProtocol(self, addr):
         print('Connected.', flush=True)
         return Com(self.robot, self.props)
 
