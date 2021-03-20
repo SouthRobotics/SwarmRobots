@@ -29,7 +29,7 @@ class Com(LineReceiver):
         print(" ( " + line.decode("utf-8") + " ) ")
         vars = line.decode("utf-8").split("--")
         try:
-            self.props[0].setSpeedAngle(vars[1], vars[0], vars[2]) 
+            self.props[0].setSpeedAngle(float(vars[1]), float(vars[0]), float(vars[2])) 
         except:
             print("error")
 
