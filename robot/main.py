@@ -14,7 +14,7 @@ def truncate(number, digits) -> float:
 
 
 
-BASE_IP = "192.168.1.190"
+BASE_IP = "10.0.0.125"
 
 pi = pigpio.pi()
 ESCL = 19
@@ -42,14 +42,18 @@ time.sleep(3)
 def sendLoop():
     global successful
     while True:
-        packet = gpsd.get_current()
-        time.sleep(1)
+        time.sleep(3)
+        try:
+            packet = gpsd.get_current()
+            time.sleep(1)
 
-        coms.Robot.coordlat = str(truncate(packet.lat, 7))
-        coms.Robot.coordlon = str(truncate(packet.lon, 7))
-        coms.Robot.speed = str(truncate(packet.speed(), 7))
-        coms.Robot.heading = str(truncate(gyro.update(icm20948), 2))
-        coms.send(factory, coms.Robot.coordlat +"--"+ coms.Robot.coordlon +"--"+ coms.Robot.speed +"--"+ coms.Robot.heading)
+            coms.Robot.coordlat = str(truncate(packet.lat, 7))
+            coms.Robot.coordlon = str(truncate(packet.lon, 7))
+            coms.Robot.speed = str(truncate(packet.speed(), 7))
+            coms.Robot.heading = str(truncate(gyro.update(icm20948), 2))
+            coms.send(factory, coms.Robot.coordlat +"--"+ coms.Robot.coordlon +"--"+ coms.Robot.speed +"--"+ coms.Robot.heading)
+        except:
+            print("GPS not warmed up")
 
 #Main Control Loop
 def controlLoop():

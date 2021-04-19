@@ -44,6 +44,7 @@ class Com(LineReceiver):
         self.robots[ID.decode("utf-8")] = self
         self.robot = Robot(self.ID)
         self.state = "NORMAL"
+        print("Robot " + str(self.ID) + " connected!")
 
     def handle_NORMAL(self, message):
         print(self.ID + " ( " +message.decode("utf-8") + " ) ")

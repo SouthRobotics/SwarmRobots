@@ -39,8 +39,8 @@ class Propulsion:
         
             self.pi.set_servo_pulsewidth(self.ESCL, int(Lspeed*(self.ESCMax-self.ESCMin)+self.ESCMin))
             self.pi.set_servo_pulsewidth(self.ESCR, int(Rspeed*(self.ESCMax-self.ESCMin)+self.ESCMin))
-            self.pi.set_servo_pulsewidth(self.ServoR, int(Angle*((self.ServoMax-self.ServoMin)/180)+self.ServoMin))
-            self.pi.set_servo_pulsewidth(self.ServoL, int(Angle*((self.ServoMax-self.ServoMin)/180)+self.ServoMin))
+            self.pi.set_servo_pulsewidth(self.ServoR, int((180-Angle)*((self.ServoMax-self.ServoMin)/180)+self.ServoMin))
+            self.pi.set_servo_pulsewidth(self.ServoL, int((180-Angle)*((self.ServoMax-self.ServoMin)/180)+self.ServoMin))
 
     def getSpeedAngle(self):
         return (self.pi.get_servo_pulsewidth(self.ESCL)-self.ESCMin)/(self.ESCMax-self.ESCMin), (self.pi.get_servo_pulsewidth(self.ESCR)-self.ESCMin)/(self.ESCMax-self.ESCMin), (self.pi.get_servo_pulsewidth(self.ServoL)-self.ServoMin)/((self.ServoMax-self.ServoMin)/180)

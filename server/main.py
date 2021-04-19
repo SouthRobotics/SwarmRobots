@@ -74,7 +74,7 @@ current_robot = 1
 #Subsystem Intilaization
 
 factory = coms.start()
-cam.work_addr = "192.168.1.137"
+cam.work_addr = "10.0.0.21"
 cam.start()
 
 
@@ -128,12 +128,12 @@ def controlLoop():
     print(joystick.get_count())
     print(controller.get_numaxes())
     while True:
-        #time.sleep(3)
+        #time.sleep(.1)
         #cam.work_addr = "10.0.0.2"+str(current_robot)
         event.pump()
         #print("i")
         coms.send(factory, current_robot, str(truncate((controller.get_axis(4)+1)/2, 3)) + "--" + str(truncate((controller.get_axis(5)+1)/2,3))  + "--" +  str(truncate(((controller.get_axis(0)+1)*90),3)))
-        print(str(truncate((controller.get_axis(4)+1)/2, 3)) + "--" + str(truncate((controller.get_axis(5)+1)/2,3))  + "--" +  str(truncate(((controller.get_axis(0)+1)*90),3)))
+        #print(str(truncate((controller.get_axis(4)+1)/2, 3)) + "--" + str(truncate((controller.get_axis(5)+1)/2,3))  + "--" +  str(truncate(((controller.get_axis(0)+1)*90),3)))
         #print(controller.get_axis(4))
         #coms.send(factory, 1)
 

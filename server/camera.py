@@ -22,7 +22,7 @@ def _start():
     global successful
     # Set up socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind(('192.168.1.190', 9656))
+    s.bind(('10.0.0.125', 9656))
     print("opened socket")
     dat = b''
     curr_work_addr = work_addr

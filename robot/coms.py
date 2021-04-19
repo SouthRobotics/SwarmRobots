@@ -26,7 +26,7 @@ class Com(LineReceiver):
         self.sendLine(bytes("1", 'utf-8'))
 
     def lineReceived(self, line):
-        print(" ( " + line.decode("utf-8") + " ) ")
+        #print(" ( " + line.decode("utf-8") + " ) ")
         vars = line.decode("utf-8").split("--")
         try:
             self.props[0].setSpeedAngle(float(vars[1]), float(vars[0]), float(vars[2])) 
